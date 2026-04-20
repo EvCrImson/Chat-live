@@ -1,0 +1,99 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: API de exemplo com Gin e chat-live
+  title: Chat
+  version: "1.0"
+paths:
+  /api/admin/pegar_conversas:
+    get:
+      description: é o admin para ser usado, apenas pelos admins, usado para ver conversas.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Admin pegar conversas
+      tags:
+      - admin
+  /api/admin/pegar_usuarios:
+    get:
+      description: é o admin para ser usado, apenas pelos admins, usado para ver usuarios.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Admin pegar usuario
+      tags:
+      - admin
+  /api/criar_Acess_Token:
+    get:
+      description: é usado para criar acess token, usado em todos.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: criar acess token
+      tags:
+      - Tokens
+  /api/criar_conversas:
+    post:
+      description: usuado para criar Conversas.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Criar conversas
+      tags:
+      - Chat
+  /api/login:
+    post:
+      description: usuado para logar em usuarios, login.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Logar
+      tags:
+      - Usuario
+  /api/pegar_conversas:
+    get:
+      description: usuado para ver Conversas.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: ver conversas
+      tags:
+      - Chat
+swagger: "2.0"
