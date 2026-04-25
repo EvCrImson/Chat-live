@@ -15,11 +15,8 @@ import (
 //	@Success		200	{object}	map[string]string
 //	@Router			/api/criar_Acess_Token [get]
 func Criar_Acess_token(c *gin.Context) {
-	type refressrequest struct {
-		Refresstoken string
-	}
 
-	var refresstoken refressrequest
+	var refresstoken Models.Refressrequest
 	if err := c.ShouldBindJSON(&refresstoken); err != nil {
 		c.JSON(400, gin.H{"error": "json inválido"})
 		return

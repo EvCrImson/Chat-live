@@ -4,8 +4,6 @@ import (
 	"chat/Models"
 	"errors"
 	"net/http"
-	"strings"
-
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -19,23 +17,7 @@ import (
 //	@Success		200	{object}	map[string]string
 //	@Router			/api/criar_conversas [post]
 func Criar_conversas(c *gin.Context) {
-	tokenStr := c.GetHeader("Authorization")
-
-	if tokenStr == "" {
-		c.AbortWithStatusJSON(401, gin.H{
-			"error": "sem Authorization",
-		})
-		return
-	}
-
-	if tokenStr == "" || !strings.HasPrefix(tokenStr, "Bearer ") {
-		c.AbortWithStatusJSON(401, gin.H{
-			"error": "na Authorization sem o Bearer",
-		})
-		return
-	}
-
-	tokenStr = strings.TrimPrefix(tokenStr, "Bearer ")
+	tokenStr := Models.Pegar_Authorization(c)
 
 	token, err := Models.Validar_acess_token(tokenStr)
 

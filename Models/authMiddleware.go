@@ -9,23 +9,7 @@ import (
 
 func AuthMiddlewareNormal() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		tokenStr := ctx.GetHeader("Authorization")
-
-		if tokenStr == "" {
-			ctx.AbortWithStatusJSON(401, gin.H{
-				"error": "sem Authorization",
-			})
-			return
-		}
-
-		if tokenStr == "" || !strings.HasPrefix(tokenStr, "Bearer ") {
-			ctx.AbortWithStatusJSON(401, gin.H{
-				"error": "na Authorization sem o Bearer",
-			})
-			return
-		}
-
-		tokenStr = strings.TrimPrefix(tokenStr, "Bearer ")
+		tokenStr := Pegar_Authorization(ctx)
 
 		_, err := Validar_acess_token(tokenStr)
 
