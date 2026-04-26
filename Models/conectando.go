@@ -7,7 +7,6 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -16,7 +15,6 @@ var Rdb *redis.Client
 var err error
 
 func Connect_bancodedados(){
-	godotenv.Load()
 	conectbancdados := os.Getenv("dadosdebanco")
 
 	DB, err = pgxpool.New(context.Background(), conectbancdados)
@@ -34,7 +32,7 @@ func Connect_bancodedados(){
 
 func Connect_redis(){
 	Rdb = redis.NewClient(&redis.Options{
-		Addr:     "127.0.0.1:6379",
+		Addr: os.Getenv("Addr"),
 		Password: os.Getenv("Redis_senha"),
 	})
 }

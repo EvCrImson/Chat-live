@@ -31,3 +31,17 @@ type Mensagem_para_criar struct {
 type Refressrequest struct {
 	Refresstoken string
 }
+
+type Mensagens_para_atualizar struct {
+	Id_mensagens          int
+	Mensagem_para_atulizar string
+	Mensagem_enviado_por  int
+	Mensagem_recebida_por int
+	Mensagem_antiga 	  string
+}
+
+
+type Deletar_usuario struct{
+	User_id string
+	Usuario string
+}
