@@ -1,4 +1,4 @@
-package Controllers
+package Services
 
 import (
 	"chat/Models"
@@ -46,13 +46,20 @@ func Criar_conversas(c *gin.Context) {
 	err = Models.DB.QueryRow(c.Request.Context(), "SELECT * FROM users WHERE user_id=$1", userid).Scan(&dados.User_id, &dados.Username, &dados.Password_hash)
 
 	if err != nil || dados.Username == "" || dados.Password_hash == "" {
-		c.JSON(400, gin.H{
+		c.JSON(404, gin.H{
 			"erro": "usuario com esse user_id não achado",
 		})
 		return
 	}
 
 	_, err = Models.DB.Exec(c.Request.Context(), "INSERT INTO mensagens (mensagem, mensagem_enviado_por, mensagem_recebida_por) VALUES ($1, $2, $3)", mensagem_criar.Mensagem, userid, mensagem_criar.Mensagem_recebida_por)
+
+	if err != nil{
+		c.JSON(500, gin.H{
+			"erro": "ao enviar para o banco de dados",
+		})
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "hi",

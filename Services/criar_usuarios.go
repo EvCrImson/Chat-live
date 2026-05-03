@@ -1,7 +1,8 @@
-package Controllers
+package Services
 
 import (
 	"chat/Models"
+
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )

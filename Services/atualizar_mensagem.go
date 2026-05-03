@@ -1,4 +1,4 @@
-package Controllers
+package Services
 
 import (
 	"chat/Models"
@@ -39,9 +39,9 @@ func Atualizar_mensagem(c *gin.Context) {
 		return
 	}
 
-	_, err :=Models.DB.Exec(c.Request.Context(), "UPDATE mensagens SET mensagem = $1 WHERE id_mensagem = $2 AND mensagem = $3", mensagens.Mensagem_para_atulizar, mensagens.Id_mensagens, mensagens.Mensagem_antiga)
+	_, err := Models.DB.Exec(c.Request.Context(), "UPDATE mensagens SET mensagem = $1 WHERE id_mensagem = $2 AND mensagem = $3", mensagens.Mensagem_para_atulizar, mensagens.Id_mensagens, mensagens.Mensagem_antiga)
 
-	if err != nil{
+	if err != nil {
 		c.JSON(400, gin.H{"error": "autuzalição da mensagem para o banco de dados, deu erro."})
 		return
 	}

@@ -20,7 +20,7 @@ func AuthMiddlewareNormal() gin.HandlerFunc {
 				})
 				return
 			}
-			ctx.AbortWithStatusJSON(401, gin.H{
+			ctx.AbortWithStatusJSON(401, gin.H{ 	
 				"error": "token invalido",
 			})
 			return

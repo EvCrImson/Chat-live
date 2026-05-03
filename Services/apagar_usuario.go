@@ -1,4 +1,4 @@
-package Controllers
+package Services
 
 import (
 	"chat/Models"

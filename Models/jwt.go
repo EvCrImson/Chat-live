@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"time"
 	"github.com/golang-jwt/jwt/v5"
+	"os"
 )
 
-var accessSecret = []byte("access-secret")
-var refreshSecret = []byte("refresh-secret")
+var accessSecret = []byte(os.Getenv("Acess_token_chave"))
+var refreshSecret = []byte(os.Getenv("Refress_token_chave"))
 
 func Criar_acess_token(user_id string) (string, error){
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{"User_id": user_id, "exp": time.Now().Add(15 * time.Minute).Unix()})

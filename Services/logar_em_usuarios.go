@@ -1,8 +1,9 @@
-package Controllers
+package Services
 
 import (
 	"chat/Models"
 	"time"
+
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -15,7 +16,7 @@ import (
 //	@Produce		json
 //	@Success		200	{object}	map[string]string
 //	@Router			/api/login [post]
-func Login(c *gin.Context) {
+func LoginUser(c *gin.Context) {
 	var usuario Models.Usuario
 
 	if err := c.ShouldBindJSON(&usuario); err != nil {
@@ -45,6 +46,6 @@ func Login(c *gin.Context) {
 
 	c.JSON(201, gin.H{
 		"refress_token": refresh_token,
-		"acess_token": acess_token,
+		"acess_token":   acess_token,
 	})
 }

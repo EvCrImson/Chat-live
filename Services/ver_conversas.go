@@ -1,11 +1,9 @@
-package Controllers
+package Services
 
 import (
 	"chat/Models"
-	"errors"
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 )
 
 // Home godoc
@@ -17,23 +15,9 @@ import (
 //	@Success		200	{object}	map[string]string
 //	@Router			/api/pegar_conversas [get]
 func Ver_conversas(c *gin.Context) {
-
 	tokenStr := Models.Pegar_Authorization(c)
 
 	token, err := Models.Validar_acess_token(tokenStr)
-
-	if token == nil {
-		if errors.Is(err, jwt.ErrTokenExpired) {
-			c.AbortWithStatusJSON(401, gin.H{
-				"error": "token expirado",
-			})
-			return
-		}
-		c.AbortWithStatusJSON(401, gin.H{
-			"error": "token invalido",
-		})
-		return
-	}
 
 	userid := Models.Pegar_dados_de_acess_token(token)
 

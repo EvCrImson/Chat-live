@@ -1,15 +1,10 @@
 package main
 
 import (
-	"chat/Routes"
+	"chat/Server"
 )
 
-//	@title			Chat
-//	@version		1.0
-//	@description	API de exemplo com Gin e chat-live
-//	@host			localhost:8080
-//	@BasePath		/
-
 func main() {
-	Routes.Rotas()
+	Server.Connecções()
+	Server.Rotas()
 }
