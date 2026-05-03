@@ -1,4 +1,4 @@
-package Models
+package Middleware
 
 import (
 	"time"

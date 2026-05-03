@@ -1,7 +1,8 @@
-package Services
+package Controller
 
 import (
 	"chat/Models"
+	"chat/Services"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -10,7 +11,7 @@ import (
 func Deletar_mensagem(c *gin.Context) {
 	tokenStr := Models.Pegar_Authorization(c)
 
-	token, erro := Models.Validar_acess_token(tokenStr)
+	token, erro := Services.Validar_acess_token(tokenStr)
 
 	if erro != nil {
 		c.JSON(400, gin.H{
@@ -19,7 +20,7 @@ func Deletar_mensagem(c *gin.Context) {
 		return
 	}
 
-	tokenStr = Models.Pegar_dados_de_acess_token(token)
+	tokenStr = Services.Pegar_dados_de_acess_token(token)
 
 	var mensagens Models.Mensagens
 	if erro := c.ShouldBindBodyWithJSON(&mensagens); erro != nil {

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"chat/Server"
+	"chat/Middleware"
+	"chat/Routes"
 )
 
 func main() {
-	Server.Connecções()
-	Server.Rotas()
+	Middleware.Connecções()
+	Routes.Rotas()
 }

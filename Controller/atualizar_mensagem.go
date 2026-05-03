@@ -1,7 +1,8 @@
-package Services
+package Controller
 
 import (
 	"chat/Models"
+	"chat/Services"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -10,9 +11,9 @@ import (
 func Atualizar_mensagem(c *gin.Context) {
 	tokenStr := Models.Pegar_Authorization(c)
 
-	token, _ := Models.Validar_acess_token(tokenStr)
+	token, _ := Services.Validar_acess_token(tokenStr)
 
-	dados := Models.Pegar_dados_de_acess_token(token)
+	dados := Services.Pegar_dados_de_acess_token(token)
 
 	var mensagens Models.Mensagens_para_atualizar
 

@@ -1,7 +1,8 @@
-package Services
+package Controller
 
 import (
 	"chat/Models"
+	"chat/Services"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -39,8 +40,8 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	acess_token, _ := Models.Criar_acess_token(dadosVar.User_id)
-	refresh_token, _ := Models.Criar_Refress_token(dadosVar.User_id)
+	acess_token, _ := Services.Criar_acess_token(dadosVar.User_id)
+	refresh_token, _ := Services.Criar_Refress_token(dadosVar.User_id)
 
 	Models.Rdb.Set(c.Request.Context(), "refress:"+dadosVar.User_id, refresh_token, 7*24*time.Hour)
 

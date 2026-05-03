@@ -1,9 +1,11 @@
-package Services
+package Controller
 
 import (
 	"chat/Models"
+	"chat/Services"
 	"errors"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -19,7 +21,7 @@ import (
 func Criar_conversas(c *gin.Context) {
 	tokenStr := Models.Pegar_Authorization(c)
 
-	token, err := Models.Validar_acess_token(tokenStr)
+	token, err := Services.Validar_acess_token(tokenStr)
 
 	if token == nil {
 		if errors.Is(err, jwt.ErrTokenExpired) {
@@ -34,7 +36,7 @@ func Criar_conversas(c *gin.Context) {
 		return
 	}
 
-	userid := Models.Pegar_dados_de_acess_token(token)
+	userid := Services.Pegar_dados_de_acess_token(token)
 
 	var mensagem_criar Models.Mensagem_para_criar
 

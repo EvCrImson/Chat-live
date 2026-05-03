@@ -1,15 +1,16 @@
-package Services
+package Controller
 
 import (
 	"chat/Models"
+	"chat/Services"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Apagar_usuario(c *gin.Context) {
 	tokenStr := Models.Pegar_Authorization(c)
-	token, _ := Models.Validar_acess_token(tokenStr)
-	tokenStr = Models.Pegar_dados_de_acess_token(token)
+	token, _ := Services.Validar_acess_token(tokenStr)
+	tokenStr = Services.Pegar_dados_de_acess_token(token)
 
 	var user Models.Deletar_usuario
 

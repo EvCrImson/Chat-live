@@ -1,7 +1,8 @@
-package Services
+package Controller
 
 import (
 	"chat/Models"
+	"chat/Services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,7 +23,7 @@ func Criar_Acess_token(c *gin.Context) {
 		return
 	}
 
-	acessstoken, erro := Models.Validar_refress_token(refresstoken.Refresstoken)
+	acessstoken, erro := Services.Validar_refress_token(refresstoken.Refresstoken)
 
 	if erro != nil {
 		c.AbortWithStatusJSON(401, gin.H{
@@ -31,9 +32,9 @@ func Criar_Acess_token(c *gin.Context) {
 		return
 	}
 
-	user_id := Models.Pegar_dados_de_refresh_token(acessstoken)
+	user_id := Services.Pegar_dados_de_refresh_token(acessstoken)
 
-	acess_token, erro := Models.Criar_acess_token(user_id)
+	acess_token, erro := Services.Criar_acess_token(user_id)
 
 	if erro != nil {
 		c.AbortWithStatusJSON(401, gin.H{

@@ -1,17 +1,19 @@
-package Models
+package Middleware
 
 import (
 	"errors"
 	"strings"
+	"chat/Models"
+	"chat/Services"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 )
 
 func AuthMiddlewareNormal() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		tokenStr := Pegar_Authorization(ctx)
+		tokenStr := Models.Pegar_Authorization(ctx)
 
-		_, err := Validar_acess_token(tokenStr)
+		_, err := Services.Validar_acess_token(tokenStr)
 
 		if err != nil {
 			if errors.Is(err, jwt.ErrTokenExpired) {
@@ -50,7 +52,7 @@ func AuthMiddlewareAdmin() gin.HandlerFunc {
 
 		tokenStr = strings.TrimPrefix(tokenStr, "Bearer ")
 
-		token, err := Validar_acess_token(tokenStr)
+		token, err := Services.Validar_acess_token(tokenStr)
 
 		if token == nil {
 			if errors.Is(err, jwt.ErrTokenExpired) {
@@ -65,7 +67,7 @@ func AuthMiddlewareAdmin() gin.HandlerFunc {
 			return
 		}
 
-		userid := Pegar_dados_de_acess_token(token)
+		userid := Services.Pegar_dados_de_acess_token(token)
 
 		if userid != "1" {
 			ctx.AbortWithStatusJSON(401, gin.H{
