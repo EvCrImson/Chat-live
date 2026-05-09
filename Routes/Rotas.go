@@ -32,7 +32,8 @@ func Rotas() {
 		Middleware.RateLimitByRoute(Models.Rdb, 5, time.Minute), 
 		Controller.Atualizar_mensagem)
 	r.DELETE(
-		"/api/deletar_mensagem", Middleware.AuthMiddlewareNormal(), 
+		"/api/deletar_mensagem", 
+		Middleware.AuthMiddlewareNormal(), 
 		Middleware.RateLimitByRoute(Models.Rdb, 5, time.Minute),
 		Controller.Deletar_mensagem)
 	r.GET(
@@ -41,7 +42,7 @@ func Rotas() {
 		Middleware.RateLimitByRoute(Models.Rdb, 10, time.Minute), 
 		Controller.Ver_conversas)
 	r.POST(
-		"/api/cadrastar", 
+		"/api/cadrastar", 	
 		Middleware.RateLimitByRoute(Models.Rdb, 5, time.Minute), 
 		Controller.Criar_usuarios)
 	r.DELETE(
